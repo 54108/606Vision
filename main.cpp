@@ -8,8 +8,11 @@
  * @copyright Copyright (c) 2024
  *
  */
-#include "imgproc/imgproc_c.h"
 #define USING_GUI
+#define DEBUG
+#ifdef DEBUG
+#define DBG std::cout << __FILE__ << ":" << __LINE__ << ":" << __TIME__ << std::endl;
+#endif
 
 #include "Camera/MVCamera.hpp"
 #include "Imgui/imgui.h"
@@ -102,9 +105,9 @@ int main(int, char **)
             ImGui::NewFrame();
 
             ImGui::Begin("Camera"); // Pass a pointer to our bool variable (the window will have a closing
-            ImGui::Text("Hello from another window!");
+            ImGui::Text("frame (%.1f FPS)", io.Framerate);
             Mat2Texture(src_img_, textures);
-            ImGui::Image(&textures, ImVec2(src_img_.cols, src_img_.rows));
+            ImGui::Image(&textures, ImGui::GetContentRegionAvail());
             ImGui::End();
 
             // Rendering
@@ -136,6 +139,7 @@ int main(int, char **)
             break;
         }
 #endif
+        mv_capture_->releaseBuff();
     }
 
 #ifdef USING_GUI
@@ -169,7 +173,8 @@ void Mat2Texture(cv::Mat &image, GLuint &imageTexture)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_BGRA, image.cols, image.rows, 0, GL_RGBA, GL_UNSIGNED_BYTE, image.data);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_BGRA, bgra_image.cols, bgra_image.rows, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     bgra_image.data);
     }
 }
 #endif
