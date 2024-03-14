@@ -1,9 +1,9 @@
 #ifndef YOLOXARMOR_INFERENCE_H
 #define YOLOXARMOR_INFERENCE_H
 
-#include "../../Utils/general.hpp"
-#include "../../Predictor/msg.hpp"
 #include "../OpenVINO2022/openvino_detector.hpp"
+#include "../../Utils/general.hpp"
+#include "../../Utils/msg.hpp"
 #include <eigen3/Eigen/Core>
 #include <ie/cpp/ie_cnn_network.h>
 #include <iostream>

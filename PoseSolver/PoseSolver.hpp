@@ -1,7 +1,7 @@
 #ifndef POSE_HPP
 #define POSE_HPP
 #include "../Detector/ArmorDetector/ArmorDetector.hpp"
-#include "../Predictor/msg.hpp"
+#include "../Utils/msg.hpp"
 #include "opencv2/core/core.hpp"
 #include <iostream>
 #include <opencv2/opencv.hpp>
