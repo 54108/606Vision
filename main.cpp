@@ -30,6 +30,9 @@ int main(int, char **)
         src_img_ = mv_capture_->image();
         // do something
 
+        imshow("output", src_img_);
+        cv::waitKey(1);
+
         mv_capture_->releaseBuff();
     }
 
