@@ -26,10 +26,6 @@ endif ()
 add_executable(606Vision main.cpp)
 target_link_libraries(606Vision GL glfw)
 
-include_directories(Imgui)
-add_subdirectory(Imgui)
-target_link_libraries(606Vision GL glfw Imgui)
-
 include_directories(Camera)
 add_subdirectory(Camera)
 target_link_libraries(606Vision Camera)
