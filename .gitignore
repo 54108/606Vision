@@ -1,1 +1,11 @@
-build
+bin
+cmake_install.cmake
+Makefile
+CMakeCache.txt
+CMakeFiles
+606Vision
+*.so
+Camera/Data
+Camera/log
+*.d
+*.o
