@@ -3,23 +3,29 @@
 #ifndef ARMOR_PROCESSOR__PROCESSOR_NODE_HPP_
 #define ARMOR_PROCESSOR__PROCESSOR_NODE_HPP_
 
-// STD
+#include "SolveTrajectory.hpp"
+#include "Utils/msg.hpp"
+#include "core/persistence.hpp"
+#include "eigen3/Eigen/Core"
+#include "tracker.hpp"
 #include <memory>
+#include <opencv2/opencv.hpp>
 #include <string>
 #include <vector>
-
-#include "SolveTrajectory.hpp"
-#include "tracker.hpp"
 
 namespace rm_auto_aim
 {
 class ArmorTrackerNode
 {
   public:
-    explicit ArmorTrackerNode(const int &);
+    explicit ArmorTrackerNode(std::string path, msg::Receive receive_msg_);
 
-    int declare_Parameter(std::string s, int a);
-    double declare_Parameter(std::string s, double a);
+    // int declare_Parameter(std::string s, int a);
+    // double declare_Parameter(std::string s, double a);
+    template <typename T> auto declare_Parameter(std::string s, T t)
+    {
+        return t;
+    };
 
   private:
     void velocityCallback(const std::shared_ptr<msg::Velocity> velocity_msg);
@@ -37,7 +43,9 @@ class ArmorTrackerNode
 
     double dt_;
 
-    std::string target_frame_;
+    std::string path;
+    Eigen::Quaterniond target_frame_;
+    msg::Receive receive_msg_;
 
     // Armor tracker
     double s2qxyz_, s2qyaw_, s2qr_;

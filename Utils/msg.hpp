@@ -1,8 +1,8 @@
 #ifndef MSG_
 #define MSG_
+#include <chrono>
 #include <eigen3/Eigen/Eigen>
 #include <eigen3/Eigen/src/Geometry/Quaternion.h>
-#include <chrono>
 #include <opencv2/core/types.hpp>
 #include <opencv2/opencv.hpp>
 #include <string>
@@ -68,14 +68,14 @@ typedef struct Send
     float yaw;
 } Send;
 
-typedef struct PoseStamped
+typedef struct Receive
 {
     struct pose
     {
         cv::Point3d position;
         Eigen::Quaterniond orientation;
     } pose;
-} PoseStamped;
+} Receive;
 
 } // namespace msg
 #endif

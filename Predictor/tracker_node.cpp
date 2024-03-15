@@ -1,5 +1,6 @@
 // Copyright 2022 Chen Jun
 #include "tracker_node.hpp"
+#include "Utils/msg.hpp"
 #include "opencv2/core/types.hpp"
 
 // STD
@@ -10,20 +11,7 @@
 
 namespace rm_auto_aim
 {
-
-int ArmorTrackerNode::declare_Parameter(std::string s, int a)
-{
-    std::cout << s << ":" << a << std::endl;
-    return a;
-}
-
-double ArmorTrackerNode::declare_Parameter(std::string s, double a)
-{
-    std::cout << s << ":" << a << std::endl;
-    return a;
-}
-
-ArmorTrackerNode::ArmorTrackerNode(const int &options)
+ArmorTrackerNode::ArmorTrackerNode(std::string path, msg::Receive receive_msg_)
 {
     // Maximum allowable armor distance in the XOY plane
     max_armor_distance_ = this->declare_Parameter("max_armor_distance", 10.0);
@@ -131,7 +119,8 @@ ArmorTrackerNode::ArmorTrackerNode(const int &options)
     p0.setIdentity();
     tracker_->ekf = ExtendedKalmanFilter{f, h, j_f, j_h, u_q, u_r, p0};
 
-    target_frame_ = declare_Parameter("target_frame", "odom");
+    // target_frame_ = declare_Parameter("target_frame", "odom");
+    target_frame_ = declare_Parameter("target_frame", receive_msg_.pose.orientation);
 }
 
 void ArmorTrackerNode::velocityCallback(const std::shared_ptr<msg::Velocity> velocity_msg)
@@ -146,7 +135,7 @@ void ArmorTrackerNode::armorsCallback(const std::shared_ptr<msg::Armors> armors_
     // Tranform armor position from image frame to world coordinate
     for (auto &armor : armors_msg->armors)
     {
-        msg::PoseStamped ps;
+        msg::Receive ps;
         ps.pose.orientation = armor.pose.orientation;
         ps.pose.position = armor.pose.position;
         // armor.pose = tf2_buffer_->transform(ps, target_frame_).pose;

@@ -139,6 +139,7 @@ void PoseSolver::solvePose(armor_detector::ArmorObject armor, msg::Armor armor_m
     double y_pos = tvec.at<double>(1, 0); // 下
     double z_pos = tvec.at<double>(2, 0); // 前
     cout << "==================================\n" << tvec << endl;
+    // cout << "==================================\n" << rvec << endl;
     // cout << "---------------------------------\n" << x_pos << endl;
 
     double tan_pitch = y_pos / sqrt(x_pos * x_pos + z_pos * z_pos);
@@ -168,7 +169,7 @@ void PoseSolver::solvePose(armor_detector::ArmorObject armor, msg::Armor armor_m
     // Fill the distance to image center
     armor_msg.distance_to_image_center = calculateDistanceToCenter(
         cv::Point2f((armor.apex[1].x + armor.apex[3].x) / 2, (armor.apex[1].y + armor.apex[3].y)));
-    // cout << "Quaternion:\n" << armor_msg.pose.orientation << endl;
+    cout << "Quaternion:\n" << armor_msg.pose.orientation << endl;
 }
 
 float PoseSolver::getYawAngle()
