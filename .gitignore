@@ -9,3 +9,4 @@ Camera/Data
 Camera/log
 *.d
 *.o
+.vscode
