@@ -42,6 +42,10 @@ include_directories(PoseSolver)
 add_subdirectory(PoseSolver)
 target_link_libraries(606Vision PoseSolver)
 
+include_directories(Serial)
+add_subdirectory(Serial)
+target_link_libraries(606Vision Serial)
+
 # Set built binary to ~/bin
 set(EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}")
 
