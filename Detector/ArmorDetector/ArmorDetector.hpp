@@ -1,7 +1,6 @@
 #ifndef YOLOXARMOR_INFERENCE_H
 #define YOLOXARMOR_INFERENCE_H
 
-#include "../OpenVINO2022/openvino_detector.hpp"
 #include "../../Utils/general.hpp"
 #include "../../Utils/msg.hpp"
 #include <eigen3/Eigen/Core>
@@ -47,6 +46,7 @@ class ArmorDetector
 {
   public:
     ArmorDetector();
+    explicit ArmorDetector(string path);
     ~ArmorDetector();
     bool detect(Mat &src, std::vector<ArmorObject> &objects);
     void display(Mat &image2show, ArmorObject object);

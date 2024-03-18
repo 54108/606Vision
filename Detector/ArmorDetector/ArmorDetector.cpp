@@ -336,6 +336,11 @@ bool ArmorDetector::initModel(string path)
     // return true;
 }
 
+ArmorDetector::ArmorDetector(string path)
+{
+    initModel(path);
+};
+
 bool ArmorDetector::detect(Mat &src, std::vector<ArmorObject> &objects)
 {
     if (src.empty())
