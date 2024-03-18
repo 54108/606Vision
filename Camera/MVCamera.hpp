@@ -90,13 +90,14 @@ class MVCamera
     // 相机是否在线
     bool isCameraOnline();
 
-    // 清除缓存
-    void releaseBuff();
-
+    // 获取图像
     inline cv::Mat image() const
     {
         return cv::cvarrToMat(iplImage, true);
     }
+
+    // 清除缓存
+    void releaseBuff();
 
   private:
     unsigned char *g_pRgbBuffer; // 处理后数据缓存区
