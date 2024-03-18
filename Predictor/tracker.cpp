@@ -7,10 +7,10 @@
 
 // STD
 #include <cfloat>
+#include <cmath>
 #include <iostream>
 #include <memory>
 #include <string>
-#include <cmath>
 
 namespace rm_auto_aim
 {

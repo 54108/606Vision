@@ -6,13 +6,13 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include <Eigen/Core>
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Dense>
 
 #include <fmt/color.h>
 #include <fmt/core.h>
 
-#include <opencv2/opencv.hpp>
+#include <opencv4/opencv2/opencv.hpp>
 
 // buff长度
 enum BufferLength
