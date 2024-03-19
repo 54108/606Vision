@@ -22,10 +22,6 @@
 msg::Armor armor_msg;
 msg::Armors armors_msg;
 
-void tracker(){
-
-};
-
 // Main code
 int main(int, char **)
 {

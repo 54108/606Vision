@@ -3,7 +3,6 @@
 #include "../Detector/ArmorDetector/ArmorDetector.hpp"
 #include "../Utils/msg.hpp"
 #include "opencv2/core/core.hpp"
-#include <iostream>
 #include <opencv2/opencv.hpp>
 
 enum ArmorType
@@ -43,22 +42,13 @@ struct PnPConfig
 class PoseSolver
 {
   public:
-    // CalculateResults calResults;
-
-    // CalculateResults* calResult =
-    // (CalculateResults*)malloc(sizeof(calResults));
-
     PoseSolver() = default;
     explicit PoseSolver(const char *filePath, int camId);
 
     ~PoseSolver();
 
-    // CalculateResults* poseSolve();
-
     void setCameraParams(const cv::Mat &camMatrix, const cv::Mat &distCoeffs);
     int readFile(const char *filePath, int camId);
-
-    // void setObjPoints(ArmorType type, double width, double height);
 
     void getImgpPoints(std::vector<cv::Point2f> image_points);
     void solvePose(armor_detector::ArmorObject armor, msg::Armor armor_msg);

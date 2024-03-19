@@ -19,8 +19,6 @@ PoseSolver::PoseSolver(const char *filePath, int camId)
         cout << "Failed to open xml" << endl;
     }
 
-    // fsRead["Y_DISTANCE_BETWEEN_GUN_AND_CAM"] >> GUN_CAM_DISTANCE_Y;
-
     Mat cameraMatrix;
     // Mat distortionCoeffs;
     switch (camId)
@@ -73,8 +71,6 @@ int PoseSolver::readFile(const char *filePath, int camId)
         cout << "Failed to open xml" << endl;
         return -1;
     }
-
-    // fsRead["Y_DISTANCE_BETWEEN_GUN_AND_CAM"] >> GUN_CAM_DISTANCE_Y;
 
     Mat cameraMatrix;
     // Mat distortionCoeffs;
@@ -134,7 +130,6 @@ void PoseSolver::solvePose(armor_detector::ArmorObject armor, msg::Armor armor_m
         break;
     }
 
-    // rotT.at<double>(1, 0) -= GUN_CAM_DISTANCE_Y;
     double x_pos = tvec.at<double>(0, 0); // 左
     double y_pos = tvec.at<double>(1, 0); // 下
     double z_pos = tvec.at<double>(2, 0); // 前
